@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pre_buy</title>
+</head>
+<body>
+	<div style="text-align: center;">
+		<h1>Total cost={{c.cost}}</h1>
+		<h3>Enter your details to complete your order</h3>
+
+		<form method="post">
+			{% csrf_token %}
+			<input type="text" name="country" placeholder="country"><br>
+			<input type="text" name="state" placeholder="state"><br>
+			<input type="text" name="city" placeholder="city"><br>
+			<input type="text" name="address" placeholder="complete address"><br>
+			<input type="submit" name="submit">
+		</form>
+	</div>
+</body>
+</html>
