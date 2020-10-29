@@ -26,12 +26,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="main_page">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Account</a>
-      </li>
+      
       {% if user.is_authenticated %}
       <li class="nav-item">
         <h2>{{user.username}}</h2>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Account</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link" href="log_out">log out</a>

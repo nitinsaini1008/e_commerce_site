@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import products,items,cart,buyed,order_count,allorder
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+
 def home(request):
 	return render(request,'home.html')
 def main_page(request):
@@ -67,7 +69,7 @@ def buy(request):
 			c.save()
 			return redirect('my_cart')
 	except:
-		return HttpResponse("an error accupied")
+		return redirect('log_in')
 def log_in(request):
 	if request.method=='POST':
 		username=request.POST['username']
@@ -98,11 +100,11 @@ def sign_in(request):
 			auth.login(request,u)
 			return redirect('main_page')
 	return render(request,'sign_in.html')
-
+@login_required
 def log_out(request):
 	auth.logout(request)
 	return redirect('main_page')
-
+@login_required
 def my_cart(request):
 	try:
 		c=cart.objects.get(name=request.user)
@@ -112,7 +114,7 @@ def my_cart(request):
 		c=cart(name=request.user,cost=0)
 		c.save()
 	return render(request,'my_cart.html',{'c':c,'msg':'not modified'})
-
+@login_required
 def delete_cart(request):
 	idd=request.GET['id']
 	t=items.objects.get(id=idd)
@@ -135,11 +137,11 @@ def delete_cart(request):
 
 def about(request):
 	return HttpResponse("about page")
-
+@login_required
 def account(request):
 	d=allorder.objects.all().filter(name=request.user)
 	return render(request,'account.html',{'d':d})
-
+@login_required
 def pre_buy(request):
 	c=cart.objects.get(name=request.user)
 	if request.method=='POST':
