@@ -36,7 +36,7 @@ def search_name(request):
 		return render(request,'search_name.html',{'name':name})
 	# d=items.objects.all()
 	# return render(request,'search_name.html',{'d':d})
-
+@login_required
 def buy(request):
 	idd=request.GET['id']
 	try:
@@ -69,7 +69,8 @@ def buy(request):
 			c.save()
 			return redirect('my_cart')
 	except:
-		return redirect('log_in')
+		return HttpResponse("an error accupied")
+
 def log_in(request):
 	if request.method=='POST':
 		username=request.POST['username']
@@ -98,6 +99,11 @@ def sign_in(request):
 			u=User.objects.create_user(username=username,email=email,password=pass_2)
 			u.save()
 			auth.login(request,u)
+			try:
+				c=cart.objects.get(name=request.user)
+			except:
+				c=cart(name=request.user,cost=0)
+				c.save()
 			return redirect('main_page')
 	return render(request,'sign_in.html')
 @login_required
@@ -119,7 +125,7 @@ def delete_cart(request):
 	idd=request.GET['id']
 	t=items.objects.get(id=idd)
 	c=cart.objects.get(name=request.user)
-	b=buyed.objects.all().filter(item=t)[0]
+	b=c.item.all().filter(item=t)[0]
 	if b.total_item==1:
 		b.delete()
 		c.item.remove(b)
@@ -139,7 +145,7 @@ def about(request):
 	return HttpResponse("about page")
 @login_required
 def account(request):
-	d=allorder.objects.all().filter(name=request.user)
+	d=allorder.objects.all().filter(name=request.user).order_by('-datetime')
 	return render(request,'account.html',{'d':d})
 @login_required
 def pre_buy(request):
@@ -150,14 +156,19 @@ def pre_buy(request):
 		city=request.POST['city']
 		address=request.POST['address']
 		ad=address+','+city+','+state+','+country
-		a=allorder(name=request.user,cost=c.cost,address=ad)
+		a=allorder(name=request.user,cost=0,address=ad)
 		a.save()
+		cost_count=0
 		for i in c.item.all():
 			x=i.item
 			y=i.total_item
+			print(x.price)
+			print(y)
+			cost_count+=(int(y)*int(x.price))
 			z=order_count(item=x,item_count=y)
 			z.save()
 			a.item.add(z)
+		a.cost=cost_count
 		a.save()
 		return redirect('account')
 	return render(request,'pre_buy.html',{'c':c})
