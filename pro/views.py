@@ -118,7 +118,7 @@ def sign_in(request):
 		# x=random.randint(1000,9999)
 		# # try:
 		# # 	server=smtplib.SMTP_SSL("smtp.gmail.com",465)
-		# # 	server.login("nitinkolawat1008@gmail.com","NITIN1008saini")
+		# # 	server.login("email","password")
 		# # 	server.sendmail("nitinsaini1008@gmail.com",
 		# # 					email,
 		# # 					"Hello your password is "+str(x))
@@ -146,7 +146,7 @@ def post_sign(request):
 	x=random.randint(1000,99999)
 	try:
 		server=smtplib.SMTP_SSL("smtp.gmail.com",465)
-		server.login("nitinkolawat1008@gmail.com","NITIN1008saini")
+		server.login("email","password")
 		server.sendmail("nitinsaini1008@gmail.com",
 						email,
 						"Hello your password is "+str(x))
