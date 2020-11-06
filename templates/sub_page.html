@@ -15,7 +15,7 @@
 
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">MyFb</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -64,6 +64,7 @@
         <p class="card-text">{{i.desc}}.</p>
         <h5 class="card-title">Rs.{{i.price}}</h5>
         <a href="/buy?id={{i.id}}" class="btn btn-primary">Add to cart</a>
+        <a href="/details/{{i.id}}" class="btn btn-primary">View</a>
       </div>
   </li>
   {% endfor %}

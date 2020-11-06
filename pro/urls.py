@@ -16,6 +16,10 @@ urlpatterns = [
     path('sub_page',views.sub_page,name='sub_page'),
     path('pre_buy',views.pre_buy,name='pre_buy'),
     path('account',views.account,name='account'),
+    path('details/<id>',views.details,name='details'),
+    path('save_reviews/<id>',views.save_reviews,name='save_reviews'),
+    path('post_sign',views.post_sign,name='post_sign'),
+    path('sign_2',views.sign_2,name='sign_2'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

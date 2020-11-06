@@ -3,15 +3,17 @@
 <head>
 	<title>log in</title>
 </head>
-<body>
+<body style="text-align: center;">
 
-<form style="text-align: center;" method="post">
+<form  method="post">
 	{% csrf_token %}
 	<h1>Enter your details</h1>
 	<input type="text" name="username" placeholder="username"><br>
 	<input type="password" name="passwd" placeholder="confirm password"><br>
-	<input type="submit" name="submit">
+	<input type="submit" name="submit"><br>
 </form>
+	{{msg}}
+
 </body>
 </html>
 

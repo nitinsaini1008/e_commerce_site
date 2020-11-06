@@ -36,6 +36,13 @@ class order_count(models.Model):
 class allorder(models.Model):
 	name=models.ForeignKey(User,on_delete=models.CASCADE)
 	cost=models.IntegerField()
-	datetime=models.DateTimeField(auto_now_add=True)
+	datetime=models.DateTimeField(auto_now_add=True)	
 	address=models.CharField(max_length=1000)
 	item=models.ManyToManyField(order_count)
+
+class re_views(models.Model):
+	point=models.IntegerField()
+	name=models.ForeignKey(User,on_delete=models.CASCADE)
+	product=models.ForeignKey(items,on_delete=models.CASCADE)
+	datetime=models.DateTimeField(auto_now_add=True)
+	msg=models.CharField(max_length=500)

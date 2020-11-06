@@ -1,4 +1,3 @@
-{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,10 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>MyFB</title>
+    <link rel = "icon" href =  
+"my_pic.png" 
+        type = "image/x-icon">
+
   </head>
   <body>
-   	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">MyFb</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,25 +26,26 @@
       <li class="nav-item active">
         <a class="nav-link" href="main_page">Home <span class="sr-only">(current)</span></a>
       </li>
+      
       {% if user.is_authenticated %}
       <li class="nav-item">
         <h2>{{user.username}}</h2>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="account">Account</a>
+        <a class="nav-link" href="/account">Account</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="log_out">log out</a>
+        <a class="nav-link" href="/log_out">log out</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="my_cart">cart({{l}})</a>
+        <a class="nav-link" href="/my_cart">cart</a>
       </li>
       {% else %}
       <li class="nav-item dropdown">
-        <a class="nav-link" href="log_in">log in</a>
+        <a class="nav-link" href="/log_in">log in</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="sign_in">Sign-in</a>
+        <a class="nav-link" href="/sign_in">Sign-in</a>
       </li>
       {% endif %}
     </ul>
@@ -51,66 +55,44 @@
     </form>
   </div>
 </nav>
-<ul class="list-unstyled">
-	<div class="container border">
-		{% for i in d %}
-		<div class="card-body">
-			<h2 class="card-text">Order by:-{{i.name.username}}</h2>
-        	<h3 class="card-text">Total Costs=Rs.:{{i.cost}}</h3>
-        	<h4 class="card-text">Order date{{i.datetime}}</h4>
-        	<h3 class="card-text">Shipping Address:-{{i.address}}</h3s>
-        		<h3 class="card-text">Items details:---</h3>
-        	{% for x in i.item.all %}
-        	<div class="container border">
-    			<img align="left" src="media/{{x.item.photo}}" class="mr-3" alt="..." height="150" width="200">    
-			    <div class="card-body">
-			        <h5 class="card-title">{{x.item.name}}</h5>
-			        <p class="card-text">{{x.item.desc}}.</p>
-			        <h1 class="card-text">Rs.={{x.item.price}}</h1>
-              <h2 class="card-text">Quantity={{x.item_count}}</h2>
-			      </div>    		
-        	</div>
-        	{% endfor %}
-		</div>
-		{% endfor %}
-	</div>
-  <!--   {% for i in c.item.all %}
-  <li class="media border">
-    <img src="media/{{i.item.photo}}" class="mr-3" alt="..." height="200" width="300">    
+
+<div>
+    <img src="/media/{{i.photo}}" class="mr-3" alt="..." height="200" width="300" align="left">    
     <div class="card-body">
-        <h5 class="card-title">{{i.item.name}}</h5>
-        <p class="card-text">{{i.item.desc}}.</p>
-        <h1 class="card-text">Rs.={{i.item.price}}</h1>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary">less</a>
-          <h1 class="card-text">{{i.total_item}}.</h1>
-           <a href="/buy?id={{i.id}}" class="btn btn-primary">Add</a>
-        </div>
+        <h5 class="card-title">{{i.name}}</h5>
+        <p class="card-text">{{i.desc}}.</p>
+        <h5 class="card-title">Rs.{{i.price}}</h5>
+        <a href="/buy?id={{i.id}}" class="btn btn-primary">Add to cart</a>
       </div>
-  </li>
-  {% endfor %} -->
+</div>
+<div class="container">
+  <form action="/save_reviews/{{i.id}}" method="post">
+    {% csrf_token %}
+    <h1>givw your review</h1>
+    <div class="container"><h1>give rating</h1>
+        <input  type="radio" name="rate" checked="checked" value=1 placeholder="1">
+        <input  type="radio" name="rate" value=2 placeholder="2">
+        <input  type="radio" name="rate" value=3 placeholder="3"> 
+        <input  type="radio" name="rate" value=4 placeholder="4"> 
+        <input  type="radio" name="rate" value=5 placeholder="5"> 
+      <br>
+      <hr>
+      <input type="text" name="msg" placeholder="enter your experience">
+      <input type="submit" name="submit">
+    </div>
+  </form>
+</div>
+<ul class="list-unstyled">
+  <div class="container border">
+    {% for i in r %}
+    <div class="card-body">
+      <h1 class="card-text">{{i.point}}</h1>
+      <h2 class="card-text">by:-{{i.name.username}}</h2>
+      <p class="card-text">{{i.msg}}.</p>
+    </div>
+    {% endfor %}
+  </div>
 </ul>
-<!-- <div class="container">
-	{{c.name.username}}
-	{{c.cost}}
-	<h1>Total Items={{l}}</h1>
-	{% for i in c.item.all %}
-		<div class="card" style="width: 18rem;">
-		  <img src="media/{{i.item.photo}}" class="card-img-top" alt="...">
-		  <div class="card-body">
-		    <h5 class="card-title">{{i.item.name}}</h5>
-		    <p class="card-text">{{i.item.desc}}.</p>
-		    <h1 class="card-text">*{{i.total_item}}.</h1>
-		    <h1 class="card-text">Rs.={{i.item.price}}</h1>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <a href="/delete_cart?id={{i.item.id}}" class="btn btn-primary">less</a>
-          <h1 class="card-text">{{i.total_item}}.</h1>
-           <a href="/buy?id={{i.id}}" class="btn btn-primary">Add</a>
-        </div>
-		  </div>
-		</div>
-	{% endfor %}
-</div> -->
 
 
     <!-- Optional JavaScript; choose one of the two! -->

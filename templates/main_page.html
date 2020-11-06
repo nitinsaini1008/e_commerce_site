@@ -12,7 +12,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">MyFb</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -53,17 +53,17 @@
   </div>
 </nav>
 <div class="container">
-  {% for i in d %}
-    <div class="card" style="width: 18rem;">
-      <img src="media/{{i.photo}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{i.name}}</h5>
-        <p class="card-text">{{i.desc}}.</p>
-        <p class="card-text">{{i.item}}.</p>
-        <a href="/sub_page?search={{i.name}}" class="btn btn-primary">{{ i.total_item }}items</a>
-      </div>
-    </div>
-  {% endfor %}
+	{% for i in d %}
+		<div class="card" style="width: 18rem;">
+		  <img src="media/{{i.photo}}" class="card-img-top" alt="...">
+		  <div class="card-body">
+		    <h5 class="card-title">{{i.name}}</h5>
+		    <p class="card-text">{{i.desc}}.</p>
+		    <p class="card-text">{{i.item}}.</p>
+		    <a href="/sub_page?search={{i.name}}" class="btn btn-primary">{{ i.total_item }}items</a>
+		  </div>
+		</div>
+	{% endfor %}
 </div>
 
 

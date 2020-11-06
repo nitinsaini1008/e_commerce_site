@@ -1,19 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>sign in</title>
 </head>
-<body>
+<body style="text-align: center;">
+<div>
+	<h1 id="hh1">Enter your details</h1>
+	<div id="dv1" >
+	
+	<input id="username" type="text" name="username" placeholder="username"><br>
+	<input id="email" type="email" name="email" placeholder="email"><br>
+	<input id="first_name" type="text" name="first_name" placeholder="first name"><br>
+	<input id="last_name" type="text" name="last_name" placeholder="last_name"><br>
+	<input id="pass_1" type="password" name="pass_1" placeholder="password"><br>
+	<input id="pass_2" type="password" name="pass_2" placeholder="confirm password"><br>
+	<input type="submit" name="submit" id="f1"><br>
+	</div>
+	<div id="dv" style="display: none;">
+	<h2>a OTP has been send to your account enter that otp here</h2>
+	<input type="text" name="otp" id="otp">
+	<input type="submit" name="submit" id="f2">
+	</div>
+</div>
+<a id="aa" href="#"></a>
+<h1>Already have an account</h1>
+<a href="/log_in">Log_in</a>
 
-<form style="text-align: center;" method="post">
-	{% csrf_token %}
-	<h1>Enter your details</h1>
-	<input type="text" name="username" placeholder="username"><br>
-	<input type="email" name="email" placeholder="email"><br>
-	<input type="password" name="pass_1" placeholder="password"><br>
-	<input type="password" name="pass_2" placeholder="confirm password"><br>
-	<input type="submit" name="submit">
-</form>
+<script src="{% static 'ajay.js' %}" type="text/javascript"></script>
 </body>
 </html>
 
