@@ -147,9 +147,9 @@ def post_sign(request):
 	try:
 		server=smtplib.SMTP_SSL("smtp.gmail.com",465)
 		server.login("email","password")
-		server.sendmail("nitinsaini1008@gmail.com",
-						email,
-						"Hello your password is "+str(x))
+		server.sendmail("your email",
+				email,
+				"Hello your password is "+str(x))
 		server.quit()
 	except:
 		return HttpResponse('unable to send mail in your account')
