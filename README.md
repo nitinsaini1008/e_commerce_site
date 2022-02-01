@@ -16,7 +16,9 @@ to send OTP in their mail id at the time of registration.
 Then this project will start running at 127.0.0.1:8000
 
 
-https://user-images.githubusercontent.com/62613600/151938686-38d6b131-c4a6-431d-bfc2-af11c9c14f03.mp4
+https://user-images.githubusercontent.com/62613600/151978278-c6073c4b-4cc0-4831-9853-083844cb3262.mp4
+
+
 
 # Tech Stack:-
 Back-End:-<br />
