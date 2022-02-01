@@ -8,7 +8,7 @@ to send OTP in their mail id at the time of registration.
 # Local Set-Up :- 
     $ git clone https://github.com/nitinsaini1008/e_commerce_site.git
     $ cd social_medi_app
-    $ pip3 install requirenment.txt
+    $ pip3 install -r requirenment.txt
     $ python3 manage.py migrate
     $ python3 manage.py runserver
 
